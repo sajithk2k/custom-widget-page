@@ -1,0 +1,22 @@
+#pincode-div {
+  background-color: #2874f0;
+  text-align: center;
+}
+#pincode-box {
+  height: 30px;
+  width: 50%;
+  margin: 12px 0;
+}
+#widget-div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.pincode-box::placeholder {
+  color: black;
+  padding-left: 5px;
+  font-weight: normal;
+}
+.imgborder {
+  border-style: solid;
+}
