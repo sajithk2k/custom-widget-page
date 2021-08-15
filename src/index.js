@@ -81,24 +81,7 @@ axios.get('https://flipkart-page-api.now.sh')
           }
       }
   }
-//search widgets by pincode
-//  function searchWidgets(pincode){
-//     console.log(pincode);
-//     console.log(currwidgets);
-//       var results = [];
-//       for(let i = 0;i<currwidgets.length;i++){
-//         if(currwidgets[i].hasOwnProperty('serviceablePincodes')){ 
-//           if(currwidgets[i].serviceablePincodes.includes(pincode)){
-//             results.push(currwidgets[i]);
-//           }
-//         }
-//         else{
-//           results.push(currwidgets[i]);
-//         }
-//       }
-//       console.log(results);
-//       loadwidgets(results);
-//  }
+
 function checkForPincode(pincode,w){
   if(!w.hasOwnProperty("serviceablePincodes"))return true;
   else if(w.serviceablePincodes.includes(pincode))return true;
@@ -106,10 +89,7 @@ function checkForPincode(pincode,w){
 }
 
 function searchWidgets(pincode,container,results){
-  console.log("called search");
-  console.log(container);
   let children = container.children;
-  console.log(children);
   let temp = [],flag = true;
   for(let i=0;i<children.length;i++){
     if(checkIfContainer(children[i]))searchWidgets(pincode,children[i],results);
@@ -130,18 +110,12 @@ function searchWidgets(pincode,container,results){
     // Number 13 is the "Enter" key on the keyboard
     if (event.code === "Enter") {
       var results = [];
-      console.log("Enter pressed");
       var pincode = event.currentTarget.value;
-      console.log(results);
     for(let i=0;i<slots.length;i++){
       if(!checkIfContainer(slots[i])){
-        console.log("Slot: "+ i +"is a Widget");
         if(checkForPincode(pincode,slots[i]))results.push(slots[i]);
-        console.log(results);
       }
       else searchWidgets(pincode,slots[i],results);
-      console.log("Slot: "+ i);
-      console.log(results);
     }
      loadwidgets(results);
     }
