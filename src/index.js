@@ -19,14 +19,11 @@ axios.get('https://flipkart-page-api.now.sh')
       let widgets=[];
       slots= d;
       getAllWidgets(widgets,d,"100%");
-      for(let i=0;i<widgets.length;i++){
-        console.log(widgets[i]);
-      }
-      loadwidgets(widgets);
+      loadwidgets(widgets,"index");
   }
 
   //decompose slots into widgets
-  function loadwidgets(widgets){
+  function loadwidgets(widgets,mode){
     document.getElementById("widget-div").innerHTML="";
       for(let i=0;i<widgets.length;i++){
           let c = widgets[i].imageCount;
@@ -50,7 +47,7 @@ axios.get('https://flipkart-page-api.now.sh')
       }
       
       var imgs = document.getElementsByClassName("widget-img");
-    
+    if(mode === "index"){
       for (let i = 0; i < imgs.length; i++) {
         (function(index) {
              imgs[index].addEventListener("click", function() {
@@ -60,10 +57,11 @@ axios.get('https://flipkart-page-api.now.sh')
               })
         })(i);
      }
-    for (let i = 0; i < localStorage.length; i++){
-      let imgno = Number(localStorage.getItem(localStorage.key(i)));
-      imgs[imgno].classList.add("imgborder");
-  }
+      for (let i = 0; i < localStorage.length; i++){
+        let imgno = Number(localStorage.getItem(localStorage.key(i)));
+        imgs[imgno].classList.add("imgborder");
+      }
+    }
   }
   function checkIfContainer(container){
     return container.hasOwnProperty('children');
@@ -117,7 +115,7 @@ function searchWidgets(pincode,container,results){
       }
       else searchWidgets(pincode,slots[i],results);
     }
-     loadwidgets(results);
+     loadwidgets(results,"search");
     }
   });
 
