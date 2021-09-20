@@ -3,5 +3,5 @@ An exercise done in vanilla JS that fetches containers with widgets and renders 
 
 After navigating to the project directory,run this project using:
 1.npm install
-2.npm rub webpack
+2.npm run webpack
 3.open index.html
